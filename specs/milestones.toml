@@ -1,0 +1,164 @@
+# Milestones: what ships in what order. Enforced in CI by .agents/scripts/check_gates.py.
+# Agents pick the first ready feature in this file's order whose assignee is theirs (see Lanes in AGENTS.md):
+# milestones top to bottom, features left to right. A spec in no milestone is backlog and is never picked.
+#
+# ship    "+H:MM" after start · "YYYY-MM-DD" (through the end of that day, UTC) · an ISO time with offset · "" = none
+# freeze  "H:MM" or "2d" before ship: only this milestone's features (and `allow`) merge as feat; fixes still merge.
+# final   the last milestone: from `report_before`, only fixes, reverts, docs and `allow`; at ship, nothing merges.
+# The bootstrap feature always merges before any other feature.
+#
+# No deadlines on purpose (decision 001, row 15): start is empty, so ship, freeze and report times are off.
+start = ""
+
+[[milestone]]
+name = "playable"
+ship = ""
+features = ["core-loop"]
+cut = []
+
+[[milestone]]
+name = "audible"
+ship = ""
+features = ["beat-track", "timing-feedback", "judging-tiers"]
+cut = []
+
+[[milestone]]
+name = "arcade"
+ship = ""
+features = ["song-select", "minuet-g", "operator-board", "piano-sim", "hud", "juice-visual", "juice-sound", "midi-watchdog", "fever-stage"]
+cut = []
+
+# frontend: eric-agent-1's lane (#157). Every feature here is assigned to eric-agent-1, so other workers skip it, and
+# it sits first in eric-agent-1's pick order. Chains (note-pills -> hit-line -> key-skin) edit the same files.
+[[milestone]]
+name = "frontend"
+ship = ""
+features = [
+  "ui-tokens",
+  "song-card",
+  "song-jacket",
+  "select-layout",
+  "hud-skin",
+  "note-pills",
+  "hit-line",
+  "key-skin",
+  "stage-card",
+  "results-layout",
+  "results-tally",
+  "rank-stamp",
+]
+cut = []
+
+[[milestone]]
+name = "library"
+ship = ""
+features = ["song-pack-1", "song-pack-2"]
+cut = []
+
+[[milestone]]
+name = "lights"
+ship = ""
+features = ["led-strip", "led-game"]
+cut = []
+
+# showcase: what the 3-minute video shows, ranked for it (decision of 2026-10-24). encore: the rest, by dependency.
+[[milestone]]
+name = "showcase"
+ship = ""
+features = [
+  "play-slots",
+  "scenes",
+  "fever-gauge",
+  "dynamics",
+  "evenness",
+  "take-graph",
+  "weak-bars",
+  "records",
+  "difficulty",
+  "hand-colors",
+  "note-labels",
+  "calibration",
+  "hand-mode",
+]
+cut = []
+
+[[milestone]]
+name = "encore"
+ship = ""
+features = [
+  "replay-view",
+  "wait-mode",
+  "highway-zoom",
+  "ghost",
+  "chord-sync",
+  "tempo-curve",
+  "song-preview",
+  "song-requests",
+  "piano-voice",
+  "take-midi",
+  "versus",
+  "cabinet",
+]
+cut = []
+
+# polish: Eric's 25 polish features (2026-10-24), ranked by a hackathon-coach pass for the 90-second video and the
+# judges' hands-on demo: quick practice mode first, then what protects and lights up the video. The last ten were
+# promoted from backlog, in two steps, as the queue ran low (closest to the video and practice first).
+[[milestone]]
+name = "polish"
+ship = ""
+features = [
+  "static-keyboard",
+  "learn-from-select",
+  "wait-hud",
+  "chunk-practice",
+  "capture-mode",
+  "song-sweep",
+  "fever-moment",
+  "clear-card",
+  "combo-hud",
+  "laptop-octaves",
+  "perf-budget",
+  "chart-lint",
+  "sheet-xml",
+  "sheet-view",
+  "bar-lines",
+  "select-stage",
+  "select-to-stage",
+  "ui-sounds",
+  "score-rollup",
+  "wait-hint",
+  "wait-hands",
+  "pause-skin",
+  "options-panel",
+  "notice-toast",
+  "black-key-lanes",
+  "pill-match",
+]
+cut = []
+
+# judging: batch two (2026-10-24), ranked by a hackathon-coach pass: keep the live demo alive first, then what the
+# video and a judge's first two minutes show. The other 17 batch-two specs and the 3 spikes stay backlog.
+[[milestone]]
+name = "judging"
+ship = ""
+features = [
+  "ci-browser",
+  "crash-guard",
+  "offline-ready",
+  "demo-reset",
+  "hero-replay",
+  "record-moment",
+  "song-sources",
+  "easy-charts",
+  "first-run",
+]
+cut = []
+
+[[milestone]]
+name = "submission"
+ship = ""
+final = true
+features = ["bar-loop", "piano-out", "operator-replay", "take-store"]
+cut = []
+allow = []
